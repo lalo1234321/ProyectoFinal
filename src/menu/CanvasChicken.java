@@ -180,46 +180,46 @@ public class CanvasChicken implements GLEventListener, MouseListener, MouseMotio
 
     public void ayuda()
     {
-        String s = "Opciones:\nEsc ¬ Acerca de:\n";
-        s = s + "Q ¬ Mover alas\n";
-        s = s + "W ¬ Mover patas\n";
-        s = s + "E ¬ Mover pico\n";
-        s = s + "Z ¬ Mover cabeza\n";
-        s = s + "X ¬ Mover moño\n";
-        s = s + "D ¬ Cara ojos saltones\n";
-        s = s + "F ¬ Cara muerta\n";
-        s = s + "R ¬ Cara original\n";
-        s = s + "A ¬ Guiño\n";
-        s = s + "S ¬ Ojos que brincan\n";
-        s = s + "1 ¬ Granja\n";
-        s = s + "2 ¬ Fabrica de nuggets\n";
-        s = s + "3 ¬ Granja intensiva de pollos\n";
-        s = s + "4 ¬ Jaula\n";
-        s = s + "5 ¬ Teatro\n";
-        s = s + "H ¬ Ayuda (este cuadro de dialogo)\n\n";
+        String s = "Opciones:\nEsc  Acerca de:\n";
+        s = s + "Q  Mover alas\n";
+        s = s + "W  Mover patas\n";
+        s = s + "E  Mover pico\n";
+        s = s + "Z  Mover cabeza\n";
+        s = s + "X  Mover moo\n";
+        s = s + "D  Cara ojos saltones\n";
+        s = s + "F  Cara muerta\n";
+        s = s + "R  Cara original\n";
+        s = s + "A  Guio\n";
+        s = s + "S  Ojos que brincan\n";
+        s = s + "1  Granja\n";
+        s = s + "2  Fabrica de nuggets\n";
+        s = s + "3  Granja intensiva de pollos\n";
+        s = s + "4  Jaula\n";
+        s = s + "5  Teatro\n";
+        s = s + "H  Ayuda (este cuadro de dialogo)\n\n";
         s = s + "Cualquier otra tecla para volver al estado original";
         JOptionPane.showMessageDialog(null, s, "Ayuda", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void ayuda1()
     {
-        String s = "Opciones:\nEsc ¬ Acerca de:\n";
-        s = s + "Q ¬ Mover alas\n";
-        s = s + "W ¬ Mover patas\n";
-        s = s + "E ¬ Mover pico\n";
-        s = s + "Z ¬ Mover cabeza\n";
-        s = s + "X ¬ Mover moño\n";
-        s = s + "D ¬ Cara ojos saltones\n";
-        s = s + "F ¬ Cara muerta\n";
-        s = s + "R ¬ Cara original\n";
-        s = s + "A ¬ Guiño\n";
-        s = s + "S ¬ Ojos que brincan\n";
-        s = s + "1 ¬ Granja\n";
-        s = s + "2 ¬ Fabrica de nuggets\n";
-        s = s + "3 ¬ Granja intensiva de pollos\n";
-        s = s + "4 ¬ Jaula\n";
-        s = s + "5 ¬ Teatro\n";
-        s = s + "H ¬ Ayuda (este cuadro de dialogo)\n\n";
+        String s = "Opciones:\nEsc  Acerca de:\n";
+        s = s + "Q  Mover alas\n";
+        s = s + "W  Mover patas\n";
+        s = s + "E  Mover pico\n";
+        s = s + "Z  Mover cabeza\n";
+        s = s + "X  Mover moo\n";
+        s = s + "D  Cara ojos saltones\n";
+        s = s + "F  Cara muerta\n";
+        s = s + "R  Cara original\n";
+        s = s + "A  Guio\n";
+        s = s + "S  Ojos que brincan\n";
+        s = s + "1  Granja\n";
+        s = s + "2  Fabrica de nuggets\n";
+        s = s + "3  Granja intensiva de pollos\n";
+        s = s + "4  Jaula\n";
+        s = s + "5  Teatro\n";
+        s = s + "H  Ayuda (este cuadro de dialogo)\n\n";
         s = s + "Cualquier otra tecla para volver al estado original";
         JOptionPane.showMessageDialog(null, s, "Ayuda", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -294,7 +294,7 @@ public class CanvasChicken implements GLEventListener, MouseListener, MouseMotio
             case 90: //Z mover cabeza
                 ban[6] = 1;
                 break;
-            case 88: //X mover moño
+            case 88: //X mover moï¿½o
                 ban[7] = 1;
                 break;
             case 72://H
@@ -302,8 +302,8 @@ public class CanvasChicken implements GLEventListener, MouseListener, MouseMotio
                 break;
             case 27://Esc
                 String s1 = "Alumno: Abraham Emanuel Morales Vallejo\n";
-                s1 = s1 + "Instituto Tecnológico de Toluca\n";
-                s1 = s1 + "Dibujo en 3D graficación";
+                s1 = s1 + "Instituto Tecnolï¿½gico de Toluca\n";
+                s1 = s1 + "Dibujo en 3D graficaciï¿½n";
                 JOptionPane.showMessageDialog(null, s1, "Acerca de:", JOptionPane.INFORMATION_MESSAGE);
                 break;
             case 68://D ojo salton
