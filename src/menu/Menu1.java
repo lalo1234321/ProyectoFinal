@@ -16,6 +16,7 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import menu.MenuCanvasCat;
 /**
@@ -151,6 +152,9 @@ public class Menu1 extends javax.swing.JFrame  {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/instructions.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel3MouseExited(evt);
             }
@@ -238,6 +242,12 @@ public class Menu1 extends javax.swing.JFrame  {
     private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/usePinky.png")));
     }//GEN-LAST:event_jLabel6MouseExited
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        JOptionPane.showMessageDialog(null, "Cat intructions: click the character and press P\n"
+                + "Pinky instructions: click the character and press  I\n"
+                + "Chicken instrucions: click the character and press H");
+    }//GEN-LAST:event_jLabel3MouseClicked
     
     public final void initCanvas() {
         /*MenuCanvasCat cat = new MenuCanvasCat();

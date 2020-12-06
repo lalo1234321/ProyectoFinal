@@ -52,10 +52,6 @@ public class MenuCanvasKitty implements GLEventListener, MouseListener, MouseMot
     private static final String instructions ="Instructivo:"
             + "\nP = Desplegar intructivo"
             + "\nA = Acerca de"
-            + "\nZ = escenario 2"
-            + "\nX = escenario 3"
-            + "\nC = escenario 4"
-            + "\nV = escemario 5"
             + "\nT = Quitarle el plato al gato"
             + "\nJ = Mutar al gato"
             + "\nL = Mutar ojos y acostarse"
@@ -195,6 +191,15 @@ public class MenuCanvasKitty implements GLEventListener, MouseListener, MouseMot
             keys['P']=false;
             keys[ke.getKeyCode()]=true;   
             System.out.println("Key pressed "+ke.getKeyChar());
+            switch(ke.getKeyCode()) {
+                 case 'P':
+                {
+                    JOptionPane.showMessageDialog(null, instructions);
+                    
+                }
+                    break;    
+            
+            }
         }
         else
             keys[ke.getKeyCode()]=false;    
