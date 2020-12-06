@@ -45,7 +45,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
-
+        gl.glScalef(2f, 2f, 2f);
         draw_right_leg(gl, glu);
         draw_left_leg(gl, glu);
         draw_arm_left(gl, glu);
@@ -65,6 +65,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
+        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg(gl, glu);
@@ -96,12 +97,13 @@ public class DrawMonst
         glu.gluQuadricDrawStyle(q, GLU.GLU_FILL);
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
-
+        
         if (mvt % 20 + 10 > 20)
         {
             draw_monst(gl);
         } else
         {
+            gl.glScalef(2f, 2f, 2f);
             gl.glRotatef(90, 20f, 15f, 15f);
             gl.glTranslatef(0f, 1f, 0f);
             draw_right_leg(gl, glu);
@@ -130,6 +132,7 @@ public class DrawMonst
             draw_monst(gl);
         } else
         {
+            gl.glScalef(2f, 2f, 2f);
             gl.glRotatef(90, 20f, 15f, 15f);
             gl.glTranslatef(0f, 0f, 2f);//boo
             draw_right_leg(gl, glu);
@@ -153,6 +156,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
+        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg1(gl, glu);
@@ -188,6 +192,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
+        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg(gl, glu);
@@ -223,6 +228,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
+        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg(gl, glu);
@@ -258,6 +264,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
+        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg(gl, glu);
