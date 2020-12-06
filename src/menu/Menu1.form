@@ -48,7 +48,7 @@
     <Component class="javax.media.opengl.GLCanvas" name="gLCanvas3">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="890" y="430" width="300" height="230"/>
+          <AbsoluteConstraints x="870" y="430" width="300" height="230"/>
         </Constraint>
       </Constraints>
     </Component>

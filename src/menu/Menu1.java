@@ -92,7 +92,7 @@ public class Menu1 extends javax.swing.JFrame  {
                 }).start();
             }
         });
-        
+        animator3.start();
         
         //initCanvas();
     }
@@ -121,7 +121,7 @@ public class Menu1 extends javax.swing.JFrame  {
         setBackground(new java.awt.Color(153, 255, 153));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(gLCanvas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 320, 230));
-        getContentPane().add(gLCanvas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 300, 230));
+        getContentPane().add(gLCanvas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 430, 300, 230));
 
         gLJPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         gLJPanel1.add(gLCanvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 230));
