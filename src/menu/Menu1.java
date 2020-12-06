@@ -110,6 +110,8 @@ public class Menu1 extends javax.swing.JFrame  {
         gLCanvas3 = new javax.media.opengl.GLCanvas();
         gLJPanel1 = new javax.media.opengl.GLJPanel();
         gLCanvas1 = new javax.media.opengl.GLCanvas();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/space.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -125,9 +127,33 @@ public class Menu1 extends javax.swing.JFrame  {
 
         getContentPane().add(gLJPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 310, 230));
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("TEA GAME");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 240, 40));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/about.png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+        });
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/aboutChange.png")));
+    }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/about.png")));
+    }//GEN-LAST:event_jLabel4MouseExited
+    
     public final void initCanvas() {
         /*MenuCanvasCat cat = new MenuCanvasCat();
         GLCanvas canvas = new GLCanvas(new GLCapabilities());
@@ -152,6 +178,8 @@ public class Menu1 extends javax.swing.JFrame  {
     private javax.media.opengl.GLCanvas gLCanvas3;
     private javax.media.opengl.GLJPanel gLJPanel1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JButton b1;
 }
