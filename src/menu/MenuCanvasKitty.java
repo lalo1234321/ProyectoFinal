@@ -50,13 +50,11 @@ public class MenuCanvasKitty implements GLEventListener, MouseListener, MouseMot
     //Fondo2
     Texture tLados2,tCielo2,tLados3,tCielo3,tLados4,tCielo4,tLados5,tPiso5,tCielo5;
     private static final String instructions ="Instructivo:"
-            + "\nP = Desplegar intructivo"
-            + "\nA = Acerca de"
-            + "\nT = Quitarle el plato al gato"
-            + "\nJ = Mutar al gato"
-            + "\nL = Mutar ojos y acostarse"
-            + "\nE = Mutar y rotar"
-            + "\nH = Disparar rayos desde los ojos";
+            + "\nT = Take the bowl from the cat"
+            + "\nJ = Mutate the cat"
+            + "\nL = Mutate eyes and lie down"
+            + "\nE = Mutate and rotate"
+            + "\nH = Shot lasers from the eyes ";
     @Override
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();

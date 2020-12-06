@@ -110,8 +110,8 @@ public class CanvasPinky implements GLEventListener, MouseListener, MouseMotionL
                 opc=0;
             break;
             case 9:
-                JOptionPane.showMessageDialog(null, "Presiona S para saludar, B para brincar, C para caminar,\n E para acercar,"
-                        + "A para aplaudir, G para guinar,\n D para mostrar triste, Z para acerca de,\n 1-5 para cambiar los fondos");
+                JOptionPane.showMessageDialog(null, "Press S to say hello, B to jump, C to walk,\n E to zoom in,"
+                        + "A to applaud, G to wink,\n D to be sad, Z about,\n 1-5 change the background");
                 opc=0;
             break;
 //            case 10:

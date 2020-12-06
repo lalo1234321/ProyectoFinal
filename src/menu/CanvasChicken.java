@@ -180,25 +180,20 @@ public class CanvasChicken implements GLEventListener, MouseListener, MouseMotio
 
     public void ayuda()
     {
-        String s = "Opciones:\nEsc  Acerca de:\n";
-        s = s + "Q  Mover alas\n";
-        s = s + "W  Mover patas\n";
-        s = s + "E  Mover pico\n";
-        s = s + "Z  Mover cabeza\n";
-        s = s + "X  Mover moo\n";
-        s = s + "D  Cara ojos saltones\n";
-        s = s + "F  Cara muerta\n";
-        s = s + "R  Cara original\n";
-        s = s + "A  Guio\n";
-        s = s + "S  Ojos que brincan\n";
-        s = s + "1  Granja\n";
-        s = s + "2  Fabrica de nuggets\n";
-        s = s + "3  Granja intensiva de pollos\n";
-        s = s + "4  Jaula\n";
-        s = s + "5  Teatro\n";
-        s = s + "H  Ayuda (este cuadro de dialogo)\n\n";
-        s = s + "Cualquier otra tecla para volver al estado original";
-        JOptionPane.showMessageDialog(null, s, "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+        String s = "Options:\nEsc  About:\n";
+        s = s + "Q  Move wings\n";
+        s = s + "W  Move legs\n";
+        s = s + "E  Move beak\n";
+        s = s + "Z  Move head\n";
+        s = s + "X  Move bow\n";
+        s = s + "D  Bulging eyes\n";
+        s = s + "F  Death face\n";
+        s = s + "R  Original face\n";
+        s = s + "A  Wink\n";
+        s = s + "S  Jumping eyes\n";
+        s = s + "H  Help (this dialog box)\n\n";
+        s = s + "Press any other key to return to the original state";
+        JOptionPane.showMessageDialog(null, s, "Help", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void ayuda1()
