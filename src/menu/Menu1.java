@@ -74,7 +74,7 @@ public class Menu1 extends javax.swing.JFrame  {
         });
         animator2.start();
         
-        gLCanvas3.addGLEventListener(new MenuCanvasCat());
+        gLCanvas3.addGLEventListener(new CanvasChicken());
         animator3 = new Animator(gLCanvas3);
         addWindowListener(new WindowAdapter() {
 
