@@ -117,13 +117,13 @@ public class Menu1 extends javax.swing.JFrame  {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 153));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(gLCanvas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 230, 180));
-        getContentPane().add(gLCanvas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 230, 180));
+        getContentPane().add(gLCanvas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 320, 230));
+        getContentPane().add(gLCanvas3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 300, 230));
 
         gLJPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        gLJPanel1.add(gLCanvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 180));
+        gLJPanel1.add(gLCanvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 230));
 
-        getContentPane().add(gLJPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 250, 180));
+        getContentPane().add(gLJPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 310, 230));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
