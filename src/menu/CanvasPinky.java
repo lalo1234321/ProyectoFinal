@@ -106,12 +106,12 @@ public class CanvasPinky implements GLEventListener, MouseListener, MouseMotionL
                 monstr.triste(gl);
             break;
             case 8:
-                JOptionPane.showMessageDialog(null, "Elaborado por: Muñoz Torres Tania Paola");
+                JOptionPane.showMessageDialog(null, "Elaborado por: Munoz Torres Tania Paola");
                 opc=0;
             break;
             case 9:
                 JOptionPane.showMessageDialog(null, "Presiona S para saludar, B para brincar, C para caminar,\n E para acercar,"
-                        + "A para aplaudir, G para guiñar,\n D para mostrar triste, Z para acerca de,\n 1-5 para cambiar los fondos");
+                        + "A para aplaudir, G para guinar,\n D para mostrar triste, Z para acerca de,\n 1-5 para cambiar los fondos");
                 opc=0;
             break;
 //            case 10:
