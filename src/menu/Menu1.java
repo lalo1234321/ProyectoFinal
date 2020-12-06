@@ -54,7 +54,7 @@ public class Menu1 extends javax.swing.JFrame  {
         });
         animator1.start();
         
-        gLCanvas2.addGLEventListener(new MenuCanvasCat());
+        gLCanvas2.addGLEventListener(new CanvasPinky());
         animator2 = new Animator(gLCanvas2);
         addWindowListener(new WindowAdapter() {
 
@@ -72,6 +72,7 @@ public class Menu1 extends javax.swing.JFrame  {
                 }).start();
             }
         });
+        animator2.start();
         
         gLCanvas3.addGLEventListener(new MenuCanvasCat());
         animator3 = new Animator(gLCanvas3);
