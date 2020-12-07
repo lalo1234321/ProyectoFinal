@@ -141,6 +141,9 @@ public class Menu1 extends javax.swing.JFrame  {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/about.png"))); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel4MouseExited(evt);
             }
@@ -248,6 +251,11 @@ public class Menu1 extends javax.swing.JFrame  {
                 + "Pinky instructions: click the character and press  I\n"
                 + "Chicken instrucions: click the character and press H");
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        JOptionPane.showMessageDialog(null, "Has been made by:\nDomínguez Cordero Eduardo 18280748\n"
+                + "Morales Vallejo Abraham Emanuel 18280753\nMunoz Torres Tania Paola 17280516");
+    }//GEN-LAST:event_jLabel4MouseClicked
     
     public final void initCanvas() {
         /*MenuCanvasCat cat = new MenuCanvasCat();
