@@ -169,6 +169,9 @@ public class Menu1 extends javax.swing.JFrame  {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/useCat.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel5MouseExited(evt);
             }
@@ -180,6 +183,9 @@ public class Menu1 extends javax.swing.JFrame  {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/usePinky.png"))); // NOI18N
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel6MouseExited(evt);
             }
@@ -191,6 +197,9 @@ public class Menu1 extends javax.swing.JFrame  {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/useChicken.png"))); // NOI18N
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel7MouseExited(evt);
             }
@@ -256,6 +265,26 @@ public class Menu1 extends javax.swing.JFrame  {
         JOptionPane.showMessageDialog(null, "Has been made by:\nDomínguez Cordero Eduardo 18280748\n"
                 + "Morales Vallejo Abraham Emanuel 18280753\nMunoz Torres Tania Paola 17280516");
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        MenuLevel menuLevel = new MenuLevel();
+        menuLevel.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        MenuLevel menuLevel = new MenuLevel();
+        menuLevel.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        MenuLevel menuLevel = new MenuLevel();
+        menuLevel.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel7MouseClicked
     
     public final void initCanvas() {
         /*MenuCanvasCat cat = new MenuCanvasCat();
