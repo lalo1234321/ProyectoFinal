@@ -9,12 +9,14 @@ import javax.media.opengl.GLEventListener;
 import personajes.Robot;
 import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.texture.Texture;
+import com.sun.opengl.util.texture.TextureIO;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLAutoDrawable;
@@ -33,7 +35,7 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
     private float view_roty = 0.01f;
     private int oldMouseX;
     private int oldMouseY;
-    boolean[] keys=new boolean[256]; //to know which key is pressed
+    public boolean[] keys=new boolean[256]; //to know which key is pressed
     private GLUquadric q=null;
     
     //position of stan in the window
@@ -55,6 +57,7 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
             + "\nL = Mutate eyes and lie down"
             + "\nE = Mutate and rotate"
             + "\nH = Shot lasers from the eyes ";
+    private Robot robot;
     @Override
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
@@ -73,8 +76,19 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
         gl.glEnable(GL.GL_LIGHT0);
         gl.glEnable(GL.GL_DEPTH_TEST);
         // Setup the drawing area and shading mode
-        gl.glClearColor(0.9f, 0.9f, 0.9f, 0.9f); 
+        gl.glClearColor(0.9f, 0.9f, 0.9f, 0.9f);
+        robot = new Robot();
+        robot.movingForward = true;
         gl.glShadeModel(GL.GL_PHONG_WIN);
+        try {
+            File iCielo = new File("src/backGround/shottingLevel/sky.jpg");
+            tCielo = TextureIO.newTexture(iCielo,true);            
+            File iAtras = new File("src/backGround/shottingLevel/sidesV1.jpg");
+            tAtras = TextureIO.newTexture(iAtras,true);
+            File iPiso = new File("src/backGround/shottingLevel/floor.jpg");
+            tPiso = TextureIO.newTexture(iPiso,true);
+        } catch (Exception e) {            
+        }
         drawable.addMouseListener(this);
         drawable.addMouseMotionListener(this);
         drawable.addKeyListener(this);
@@ -90,9 +104,9 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
         
         // Reset the current matrix to the "identity"
         gl.glLoadIdentity();
-        glu.gluLookAt(0.1f,0.0f,4.0f,// eye
+        glu.gluLookAt(0.1f,0.0f,3.9f,// eye
                       0.0f,0.0f,0.0f,  // looking at
-                      0.0f,0.0f,1.0f   // is up
+                      0.0f,0.0f,3.0f   // is up
                     );
         
         // Move the whole scene
@@ -100,11 +114,64 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
         gl.glRotatef(view_rotx,1.0f,0.0f,0.0f);
         gl.glRotatef(view_roty,0.0f,1.0f,0.0f);
         gl.glRotatef(90,0.0f,0.0f,1.0f);
+        gl.glRotatef(180,0.0f,1.0f,0.0f);
+        gl.glRotatef(-40,1.0f,0.0f,0.0f);
         gl.glPushMatrix();
-        Robot robot = new Robot();
-        robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H']);
+        
+        
+        
+        gl.glPushMatrix();
+        gl.glScaled(1f,.9f ,.5f );
+        gl.glTranslated(0,0 ,0 );
+        robot.fondo(gl, glu, tAtras);
         gl.glPopMatrix();
-        System.out.println("Ejecución?");
+        gl.glFlush();
+        
+        gl.glPushMatrix();
+        gl.glScaled(1f,.9f ,1f );
+        gl.glTranslated(0,0 ,-1f );
+        gl.glRotatef(-90, 1f, 0f, 0f);
+        robot.fondo(gl, glu, tPiso);
+        gl.glPopMatrix();
+        gl.glFlush();
+        
+        gl.glPushMatrix();
+        gl.glScaled(1f,.9f ,1f );
+        gl.glTranslated(0,0 ,-1f );
+        gl.glRotatef(90,1f , 0f, 0f);
+        robot.fondo(gl, glu, tCielo);
+        gl.glPopMatrix();
+        gl.glFlush();
+        
+        //ParteIzquierda
+        gl.glPushMatrix();
+        gl.glScaled(1f,.9f ,1f );
+        gl.glRotatef(90,0f , 1f, 0f);
+        robot.fondo(gl, glu, tAtras);
+        gl.glPopMatrix();
+        gl.glFlush();
+        
+        //ParteDerecha
+        gl.glPushMatrix();
+        gl.glScaled(1f,.9f ,1f );
+        gl.glRotatef(-90,0f , 1f, 0f);
+        robot.fondo(gl, glu, tAtras);
+        gl.glPopMatrix();
+        gl.glFlush();
+
+        //frente
+        gl.glPushMatrix();
+        gl.glScaled(1f,.9f ,1f );
+        gl.glTranslated(-1f,-1f ,10.0f );
+        gl.glRotatef(0, 0f, 0f, 1f);
+        robot.fondo(gl, glu, tAtras);
+        gl.glPopMatrix();
+        gl.glFlush();
+        gl.glPushMatrix();
+        gl.glTranslated(0, 0, 1.2);
+        robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H'],keys['A'], keys['D'], true);
+        gl.glPopMatrix();
+        gl.glPopMatrix();
         gl.glFlush();
     }      
 
@@ -164,7 +231,7 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
         oldMouseY = y;
         view_rotx += thetaX;
         view_roty += thetaY;
-        System.out.println(view_rotx+" "+view_roty);
+        
     }
 
     @Override
@@ -178,10 +245,12 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
     @Override
     public void keyPressed(KeyEvent ke) {
         if (ke.getKeyCode()<250 && keys[ke.getKeyCode()]==false){   
+            keys['A']=false;
+            keys['D']=false;
             keys['E']=false;
             keys['J']=false;
             keys['T']=false;
-            keys['A']=false;
+            keys['G']=false;
             keys['L']=false;
             keys['H']=false;
             keys['Z']=false;

@@ -9,6 +9,7 @@ import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.media.opengl.GLCanvas;
+import javax.swing.JFrame;
 import levels.targetShottingLevel.CanvasCatShottingLevel;
 /**
  *
@@ -84,9 +85,9 @@ public class MenuLevel extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
 
-        Frame frame = new Frame("Robot 3D");
+        JFrame frame = new JFrame("Robot 3D");
         GLCanvas canvas = new GLCanvas();
-
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         canvas.addGLEventListener(new CanvasCatShottingLevel());
         frame.add(canvas);
         frame.setSize(1000, 800);

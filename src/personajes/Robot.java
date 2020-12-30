@@ -1,6 +1,8 @@
 
 package personajes;
 //comentario
+
+import levels.targetShottingLevel.CanvasCatShottingLevel;
 import com.sun.opengl.util.texture.Texture;
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
@@ -61,9 +63,13 @@ public class Robot {
     private static boolean translate1 = false;
     private static boolean translate = false;
     private static boolean earMoving = false;
+    private float moveAD,moveTarget=0f;
+    private boolean right = false;
+    public boolean movingForward, movingBack = false;
+    
     public Robot(){}
     
-    public void drawRobot(GL gl, boolean jump,boolean translate, boolean ears, boolean body, boolean attack) {
+    public void drawRobot(GL gl, boolean jump,boolean translate, boolean ears, boolean body, boolean attack, boolean left, boolean right, boolean targetGame) {
         GLU glu = new GLU();
         q=glu.gluNewQuadric();
         glu.gluQuadricDrawStyle(q, GLU.GLU_FILL);
@@ -71,18 +77,37 @@ public class Robot {
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         //System.out.println(currentX);
 //        System.out.println(jump);
+        if(targetGame){
+            //System.out.println(moveTarget);
+            if(moveTarget>1.3f) {
+            movingBack = true;
+            movingForward = false;
+             }   
+        
+            if(moveTarget<-1.3f) {
+                movingForward = true;
+                movingBack = false;
+
+            }
+            gl.glPushMatrix();
+            drawTarget(gl, glu);
+            moveTarget(gl,glu);
+            gl.glPopMatrix();
+        }
+        
         gl.glPushMatrix();
+        if(left) {
+            moveAD+=.02f;
+            
+        }
+        if(right) {
+            moveAD -=.02f;
+        }
         if(attack==false) {
             currentX2 = xInicial2;
             isForward2 = true;
             Robot.translate1 = false;
-        
-        }
-        if(ears==false) {
-            drawLeftEar(gl, glu, ' ');
-            currentX1 = xInicial1;
-            isForward1 = true;
-            Robot.earMoving = false;
+       
         }
         if(translate==false){
             drawBowl(gl, glu);
@@ -215,7 +240,8 @@ public class Robot {
         }
         
         else {
-            gl.glPushMatrix();
+            gl.glTranslatef(moveAD, 0, 0);
+           // gl.glPushMatrix();
             drawFaceCat(gl, glu,' ');
             
             drawLeftEar(gl, glu,' ');
@@ -227,8 +253,9 @@ public class Robot {
             drawLegs(gl, glu,' ');
             
             drawBody(gl, glu, ' ');
-            gl.glPopMatrix();    
+           // gl.glPopMatrix();    
         }
+        
         
     }
     public void drawBowl(GL gl, GLU glu) {
@@ -513,6 +540,24 @@ public class Robot {
         
         gl.glPopMatrix();
     
+    }
+    
+    public void drawTarget(GL gl, GLU glu) {
+        set_red_material(gl);
+        gl.glTranslatef(this.moveTarget,0f , 2f);
+        glu.gluDisk(q, 0f, BOTTOM_BODY, SLICES, STACKS);
+    
+    
+    }
+    
+    public void moveTarget(GL gl, GLU glu) {
+        if(this.moveTarget<=1.5f&&this.movingForward) {
+            this.moveTarget+=.02f;
+        }
+        if(this.moveTarget>=-1.5f&&this.movingBack) {
+            this.moveTarget-=.02f;
+            
+        }
     }
     public void set_blue_material (GL gl){
         
