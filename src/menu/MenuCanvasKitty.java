@@ -105,7 +105,7 @@ public class MenuCanvasKitty implements GLEventListener, MouseListener, MouseMot
         Robot robot = new Robot();
         robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H']);
         gl.glPopMatrix();
-        System.out.println("Ejecución?");
+        //System.out.println("Ejecución?");
         gl.glFlush();
     }
 
@@ -162,7 +162,7 @@ public class MenuCanvasKitty implements GLEventListener, MouseListener, MouseMot
         oldMouseY = y;
         view_rotx += thetaX;
         view_roty += thetaY;
-        System.out.println(view_rotx+" "+view_roty);
+        //System.out.println(view_rotx+" "+view_roty);
     }
 
     @Override

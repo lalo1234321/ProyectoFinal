@@ -130,7 +130,7 @@ public class Robot {
            
            
             
-             System.out.println("He entrado");
+             //System.out.println("He entrado");
             earMoving = true;
             if(currentX1 < xFinal1 && isForward1) {
             gl.glRotated(currentX1, 0, 0, 1);
@@ -320,7 +320,7 @@ public class Robot {
     }
     
     public void drawLeftEar(GL gl, GLU glu, char c) {
-        System.out.println(currentX1);
+        //System.out.println(currentX1);
         gl.glPushMatrix();
         gl.glTranslatef(-.2f, 0.95f, -1.0f);
         gl.glRotated(angle1, 0, 0, 1);
