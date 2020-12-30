@@ -269,21 +269,21 @@ public class Menu1 extends javax.swing.JFrame  {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         MenuLevel menuLevel = new MenuLevel();
         menuLevel.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
 
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         MenuLevel menuLevel = new MenuLevel();
         menuLevel.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
 
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         MenuLevel menuLevel = new MenuLevel();
         menuLevel.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
     
     public final void initCanvas() {

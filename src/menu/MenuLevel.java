@@ -4,13 +4,18 @@
  * and open the template in the editor.
  */
 package menu;
-
+import com.sun.opengl.util.Animator;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.media.opengl.GLCanvas;
+import levels.targetShottingLevel.CanvasCatShottingLevel;
 /**
  *
  * @author theowl
  */
 public class MenuLevel extends javax.swing.JFrame {
-
+    private Animator animator;
     /**
      * Creates new form MenuLevel
      */
@@ -44,6 +49,11 @@ public class MenuLevel extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/targetShotting.png"))); // NOI18N
         jLabel2.setText("jLabel2");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 260, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/thinkAndChoose.png"))); // NOI18N
@@ -71,6 +81,24 @@ public class MenuLevel extends javax.swing.JFrame {
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+
+        Frame frame = new Frame("Robot 3D");
+        GLCanvas canvas = new GLCanvas();
+
+        canvas.addGLEventListener(new CanvasCatShottingLevel());
+        frame.add(canvas);
+        frame.setSize(1000, 800);
+        animator = new Animator(canvas);
+        // Center frame
+        
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        
+        animator.start();
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
