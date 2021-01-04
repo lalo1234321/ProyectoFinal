@@ -11,16 +11,19 @@ import java.awt.event.WindowEvent;
 import javax.media.opengl.GLCanvas;
 import javax.swing.JFrame;
 import levels.targetShottingLevel.CanvasCatShottingLevel;
+import levels.targetShottingLevel.CanvasMonsterShottingLevel;
 /**
  *
  * @author theowl
  */
 public class MenuLevel extends javax.swing.JFrame {
-    private Animator animator;
+    public static Animator animator;
+    private int character;
     /**
      * Creates new form MenuLevel
      */
-    public MenuLevel() {
+    public MenuLevel(int op) {
+        this.character = op;
         initComponents();
     }
 
@@ -88,7 +91,10 @@ public class MenuLevel extends javax.swing.JFrame {
         JFrame frame = new JFrame("Robot 3D");
         GLCanvas canvas = new GLCanvas();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        canvas.addGLEventListener(new CanvasCatShottingLevel());
+        if(character == 1)
+            canvas.addGLEventListener(new CanvasCatShottingLevel(frame));
+        if(character ==2)
+            canvas.addGLEventListener(new CanvasMonsterShottingLevel(frame));
         frame.add(canvas);
         frame.setSize(1000, 800);
         animator = new Animator(canvas);

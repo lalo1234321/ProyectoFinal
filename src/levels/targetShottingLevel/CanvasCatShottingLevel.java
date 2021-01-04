@@ -23,6 +23,7 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /**
  *
@@ -49,6 +50,7 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
     Texture tIzquierda;  
     Texture tCielo;
     Texture tPiso;
+    private JFrame frame;
     //Fondo2
     Texture tLados2,tCielo2,tLados3,tCielo3,tLados4,tCielo4,tLados5,tPiso5,tCielo5;
     private static final String instructions ="Instructivo:"
@@ -58,6 +60,10 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
             + "\nE = Mutate and rotate"
             + "\nH = Shot lasers from the eyes ";
     private Robot robot;
+    public CanvasCatShottingLevel(JFrame frame) {
+        this.frame = frame;
+    
+    }
     @Override
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
@@ -77,8 +83,10 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
         gl.glEnable(GL.GL_DEPTH_TEST);
         // Setup the drawing area and shading mode
         gl.glClearColor(0.9f, 0.9f, 0.9f, 0.9f);
-        robot = new Robot();
-        robot.movingForward = true;
+        robot = new Robot(frame);
+        robot.movingForward  = true;
+        robot.movingForward1 = true;
+        robot.movingForward2 = true;
         gl.glShadeModel(GL.GL_PHONG_WIN);
         try {
             File iCielo = new File("src/backGround/shottingLevel/sky.jpg");
@@ -164,12 +172,12 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
         gl.glScaled(1f,.9f ,1f );
         gl.glTranslated(-1f,-1f ,10.0f );
         gl.glRotatef(0, 0f, 0f, 1f);
-        robot.fondo(gl, glu, tAtras);
+        //robot.fondo(gl, glu, tAtras);
         gl.glPopMatrix();
         gl.glFlush();
         gl.glPushMatrix();
         gl.glTranslated(0, 0, 1.2);
-        robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H'],keys['A'], keys['D'], true);
+        robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H'],keys['A'], keys['D'], true,keys['W']);
         gl.glPopMatrix();
         gl.glPopMatrix();
         gl.glFlush();
@@ -247,6 +255,7 @@ public class CanvasCatShottingLevel implements GLEventListener, MouseListener, M
         if (ke.getKeyCode()<250 && keys[ke.getKeyCode()]==false){   
             keys['A']=false;
             keys['D']=false;
+            keys['W']=false;
             keys['E']=false;
             keys['J']=false;
             keys['T']=false;
