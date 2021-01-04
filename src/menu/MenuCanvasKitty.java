@@ -47,6 +47,8 @@ public class MenuCanvasKitty implements GLEventListener, MouseListener, MouseMot
     Texture tIzquierda;  
     Texture tCielo;
     Texture tPiso;
+    public MenuCanvasKitty() {
+    }
     //Fondo2
     Texture tLados2,tCielo2,tLados3,tCielo3,tLados4,tCielo4,tLados5,tPiso5,tCielo5;
     private static final String instructions ="Instructivo:"
@@ -103,7 +105,7 @@ public class MenuCanvasKitty implements GLEventListener, MouseListener, MouseMot
         gl.glRotatef(90,0.0f,0.0f,1.0f);
         gl.glPushMatrix();
         Robot robot = new Robot();
-        robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H'],false, false, false);
+        robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H'],false, false, false, false);
         gl.glPopMatrix();
         //System.out.println("Ejecución?");
         gl.glFlush();

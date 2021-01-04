@@ -1,13 +1,16 @@
 
 package personajes;
 //comentario
-
+import menu.Menu1;
+import menu.MenuLevel;
 import levels.targetShottingLevel.CanvasCatShottingLevel;
 import com.sun.opengl.util.texture.Texture;
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
-
+import java.lang.Math;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 public class Robot {
     private static final int SLICES=40;
     private static final int STACKS=40;
@@ -63,13 +66,19 @@ public class Robot {
     private static boolean translate1 = false;
     private static boolean translate = false;
     private static boolean earMoving = false;
-    private float moveAD,moveTarget=0f;
+    private float moveAD,moveTarget=0f,moveTarget1=0f, moveTarget2=0f;
     private boolean right = false;
-    public boolean movingForward, movingBack = false;
-    
+    public boolean movingForward, movingBack = false,fire = true,destroyed = false;
+    public boolean movingForward1, movingBack1 = false, destroyed1 = false;
+    public boolean movingForward2, movingBack2 = false, destroyed2 = false;
+    private float k = 0;
+    private JFrame frame;
     public Robot(){}
+    public Robot(JFrame frame) {
+        this.frame = frame;
+    }
     
-    public void drawRobot(GL gl, boolean jump,boolean translate, boolean ears, boolean body, boolean attack, boolean left, boolean right, boolean targetGame) {
+    public void drawRobot(GL gl, boolean jump,boolean translate, boolean ears, boolean body, boolean attack, boolean left, boolean right, boolean targetGame, boolean fire) {
         GLU glu = new GLU();
         q=glu.gluNewQuadric();
         glu.gluQuadricDrawStyle(q, GLU.GLU_FILL);
@@ -89,10 +98,52 @@ public class Robot {
                 movingBack = false;
 
             }
-            gl.glPushMatrix();
-            drawTarget(gl, glu);
-            moveTarget(gl,glu);
-            gl.glPopMatrix();
+            if(moveTarget1>2.3f) {
+                movingBack1 = true;
+                movingForward1 = false;
+            }
+            if(moveTarget1<-2.3f) {
+                movingForward1 = true;
+                movingBack1 = false;
+            }
+            
+            if(moveTarget2>3.1f) {
+                movingBack2 = true;
+                movingForward2 = false;
+            }
+            if(moveTarget2<-3.1f) {
+                movingForward2 = true;
+                movingBack2 = false;
+            }
+            if(!destroyed) {
+                gl.glPushMatrix();
+                drawTarget(gl, glu);
+                moveTarget(gl);
+                gl.glPopMatrix();
+            }
+            if(!destroyed1) {
+                gl.glPushMatrix();
+                drawTarget1(gl, glu);
+                moveTarget1(gl);
+                gl.glPopMatrix();
+                
+            }
+            
+            if(!destroyed2) {
+                gl.glPushMatrix();
+                drawTarget2(gl, glu);
+                moveTarget2(gl);
+                gl.glPopMatrix();
+            }
+            if(destroyed&&destroyed1&&destroyed2)
+                {
+                    JOptionPane.showMessageDialog(null, "You have won");
+                    frame.setVisible(false);
+                    Menu1 menu = new Menu1();
+                    menu.setVisible(true);
+                    MenuLevel.animator.stop();
+                   
+                }
         }
         
         gl.glPushMatrix();
@@ -102,6 +153,13 @@ public class Robot {
         }
         if(right) {
             moveAD -=.02f;
+        }
+        if(!fire) {
+            k = 0;
+        }
+        if(fire&&this.fire) {
+                shotLaser(gl);
+                
         }
         if(attack==false) {
             currentX2 = xInicial2;
@@ -542,24 +600,109 @@ public class Robot {
     
     }
     
-    public void drawTarget(GL gl, GLU glu) {
-        set_red_material(gl);
-        gl.glTranslatef(this.moveTarget,0f , 2f);
-        glu.gluDisk(q, 0f, BOTTOM_BODY, SLICES, STACKS);
-    
+    public void shotLaser(GL gl) {
+        this.fire  = true;
+            set_red_material(gl);
+            float bandY = moveAD;
+        if(k<=1000000.5f||k == 0) {
+
+            k+=.954f;
+            gl.glPushMatrix();
+            gl.glTranslatef(bandY, 0, k);
+            gl.glScaled(.2, .2, .2);
+            box(gl);
+            gl.glPopMatrix();
+        }
+            if(k>=1000000.5f) {
+
+                k = 0;
+
+                //shoot = this.shoot;
+                //System.out.println(shoot);
+            }
     
     }
     
-    public void moveTarget(GL gl, GLU glu) {
+    public void drawTarget(GL gl, GLU glu) {
+        if(Math.abs(k-2)<.565&&Math.abs(moveAD-moveTarget)<.565) {
+            set_blue_material(gl);
+            gl.glTranslatef(this.moveTarget,0f , 2f);
+            glu.gluDisk(q, 0f, BOTTOM_BODY, SLICES, STACKS);
+            destroyed = true;
+        }
+        if(destroyed==false) {
+            set_red_material(gl);
+            gl.glTranslatef(this.moveTarget,0f , 2f);
+            glu.gluDisk(q, 0f, BOTTOM_BODY, SLICES, STACKS);        
+        }
+        
+    }
+    
+    public void drawTarget1(GL gl, GLU glu) {
+        if(Math.abs(k-3)<.565&&Math.abs(moveAD-moveTarget1)<.565) {
+            set_red_material(gl);
+            gl.glTranslatef(this.moveTarget1,0f , 3f);
+            glu.gluDisk(q, 0f, BOTTOM_BODY, SLICES, STACKS);
+            destroyed1 = true;
+        }
+        if(destroyed1==false) {
+            set_blue_material(gl);
+            gl.glTranslatef(this.moveTarget1,0f , 3f);
+            glu.gluDisk(q, 0f, BOTTOM_BODY, SLICES, STACKS);        
+        }
+    
+    }
+    
+    public void drawTarget2(GL gl, GLU glu) {
+        if(Math.abs(k-5)<.565&&Math.abs(moveAD-moveTarget2)<.565) {
+            set_mouth_material(gl);
+            gl.glTranslatef(this.moveTarget2,0f , 5f);
+            glu.gluDisk(q, 0f, BOTTOM_BODY, SLICES, STACKS);
+            destroyed2 = true;
+        }
+        if(destroyed2==false) {
+            set_mouth_material(gl);
+            gl.glTranslatef(this.moveTarget2,0f , 5f);
+            glu.gluDisk(q, 0f, BOTTOM_BODY, SLICES, STACKS);  
+        
+        }
+    
+    }
+    
+    public void moveTarget(GL gl) {
         if(this.moveTarget<=1.5f&&this.movingForward) {
-            this.moveTarget+=.02f;
+            this.moveTarget+=.01f;
         }
         if(this.moveTarget>=-1.5f&&this.movingBack) {
-            this.moveTarget-=.02f;
+            this.moveTarget-=.01f;
             
         }
     }
-    public void set_blue_material (GL gl){
+    
+    public void moveTarget2(GL gl) {
+         if(this.moveTarget2<=3.5f&&this.movingForward2) {
+            this.moveTarget2+=.11f;
+        }
+        if(this.moveTarget2>=-3.5f&&this.movingBack2) {
+            this.moveTarget2-=.11f;
+            
+        }
+    
+    
+    }
+    
+    public void moveTarget1(GL gl) {
+        if(this.moveTarget1<=2.5f&&this.movingForward1) {
+            this.moveTarget1+=.21f;
+        }
+        if(this.moveTarget1>=-2.5f&&this.movingBack1) {
+            this.moveTarget1-=.21f;
+            
+        }
+    }
+    public void set_blue_material (GL gl) {
+    
+  
         
         float mat_ambient[]={0.2f,0.2f,0.6f,1.0f};
         float mat_diffuse[]={1.0f,1.0f,1.0f,1.0f};
