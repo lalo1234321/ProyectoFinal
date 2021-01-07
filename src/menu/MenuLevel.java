@@ -12,6 +12,7 @@ import javax.media.opengl.GLCanvas;
 import javax.swing.JFrame;
 import levels.targetShottingLevel.CanvasCatShottingLevel;
 import levels.targetShottingLevel.CanvasMonsterShottingLevel;
+import levels.targetShottingLevel.CanvasPolloShottingLevel;
 /**
  *
  * @author theowl
@@ -93,8 +94,10 @@ public class MenuLevel extends javax.swing.JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         if(character == 1)
             canvas.addGLEventListener(new CanvasCatShottingLevel(frame));
-        if(character ==2)
+        if(character == 2)
             canvas.addGLEventListener(new CanvasMonsterShottingLevel(frame));
+        if(character == 3)
+            canvas.addGLEventListener(new CanvasPolloShottingLevel(frame)); 
         frame.add(canvas);
         frame.setSize(1000, 800);
         animator = new Animator(canvas);

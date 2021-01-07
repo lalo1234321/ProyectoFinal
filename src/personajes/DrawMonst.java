@@ -45,7 +45,8 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
-        gl.glScalef(2f, 2f, 2f);
+        gl.glTranslated(0, 0, 3);
+        //gl.glScalef(2f, 2f, 2f);
         draw_right_leg(gl, glu);
         draw_left_leg(gl, glu);
         draw_arm_left(gl, glu);
