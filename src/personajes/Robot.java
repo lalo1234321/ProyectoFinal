@@ -76,7 +76,7 @@ public class Robot {
     private JFrame frame;
      private String [] tips = new String[] {
     "Whenever possible, do a problem multiple ways.",
-    "Move around each section nimbly, skipping questions that stump you to put “fresh eyes” on them later.",
+    "Move around each section nimbly, skipping questions that stump you to put fresh eyes on them later.",
     "Have a plan for the Multiple Choice section that recognizes the purpose of wrong answer choices. ",
     "Have a plan for the Free Response section that maximizes point allocation.",
     "Value diagrams and graphs, whether they are provided or you have to draw them yourself.",
