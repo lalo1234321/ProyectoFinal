@@ -3,32 +3,53 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package menu;
+package levels.thinkAndChoose;
 
+import com.sun.opengl.util.texture.Texture;
+import com.sun.opengl.util.texture.TextureIO;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+//import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import personajes.DrawMonst;
+//import sun.audio.AudioPlayer;
+//import sun.audio.AudioStream;
 
 /**
  *
  * @author TANIA
  */
-public class CanvasPinky implements GLEventListener, MouseListener, MouseMotionListener, KeyListener{
-    private float rotx = 0.01f;
-    private float roty = 0.01f;
-    private int mousex;
-    private int mousey;
-    boolean[] keys = new boolean[256]; //to know which key is pressed
-    public int opc;
+public class PinkyTACHLevel implements GLEventListener, MouseListener, MouseMotionListener,KeyListener{
+    private int mousex,mousey,opc,cont=0,aux1=-2;
+    float movizqder=0;
+    boolean stop=false,accion=false;
+    public static javax.swing.JLabel inst;
+//    AudioStream audio;
+    static InputStream sound;
+    Frame frame;
+    Clip clip;
+    private File file;
+    Texture t,tAtras,tFrente,tDerecha,tIzquierda,tCielo,tPiso;
+    
+    private float rotx = 0.01f, roty = 0.01f;
+    boolean[] keys = new boolean[256]; //to know which key is presse
+    float pos;
 
     @Override
     public void init(GLAutoDrawable drawable) {
@@ -54,7 +75,7 @@ public class CanvasPinky implements GLEventListener, MouseListener, MouseMotionL
         drawable.addMouseMotionListener( this);
         drawable.addKeyListener( this);
     }
-
+    
     @Override
     public void display(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
@@ -78,13 +99,37 @@ public class CanvasPinky implements GLEventListener, MouseListener, MouseMotionL
         gl.glRotatef(110,0.0f, 0.2f, 1.0f);
         DrawMonst monstr = new DrawMonst();
         
+//        if(cont>=1){
+//        cont++;
+//        }
+//        if (cont>10){
+//        keys['S']=false;
+//        keys['B']=false;
+//        accion=false;
+//        cont=0;
+//        }
+//        
+//        if(pos<=3 && stop!=true  ){
+//        pos+=0.2;
+//        aux1++;
+//        }else{
+//            pos-=3;
+//            aux1=-3;
+//        }
+//        
+//         if(aux1==13 && accion==true ){
+//           
+//         }
+        
+       
+        
         switch(opc){
             case 0:
                 
                 monstr.draw_monst(gl);
+                
                 break;
             case 1:
-                
                 monstr.saludar(gl);
             break;
             case 2:
@@ -225,6 +270,8 @@ public class CanvasPinky implements GLEventListener, MouseListener, MouseMotionL
 //                }
 //                break;
         }
+        monstr.rebota(gl);
+//        monstr.pelota(gl,glu);
         
     }
 
@@ -371,5 +418,7 @@ public class CanvasPinky implements GLEventListener, MouseListener, MouseMotionL
     public void keyReleased(KeyEvent ke) {
         
     }
+    
+
     
 }

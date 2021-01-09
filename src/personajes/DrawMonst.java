@@ -16,7 +16,9 @@ public class DrawMonst
     private static final int SLICES = 40;
     private static final int STACKS = 40;
     private GLUquadric q = null;
-    private static int mvt = 0;
+    private static int mvt = 0, movaux=0;
+    private float mov=0f;
+    private boolean moviendoa=true, moviendob=true;
 
     //heigth and widht of each components
     private static final float HEIGHT_BODY = 1.0f;
@@ -35,6 +37,7 @@ public class DrawMonst
     public DrawMonst()
     {
     }
+    
 
     public void draw_monst(GL gl)
     {
@@ -45,7 +48,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
-        gl.glScalef(2f, 2f, 2f);
+//        gl.glScalef(2f, 2f, 2f);
         draw_right_leg(gl, glu);
         draw_left_leg(gl, glu);
         draw_arm_left(gl, glu);
@@ -56,6 +59,7 @@ public class DrawMonst
         draw_body(gl, glu);
 
     }
+    
 
     public void saludar(GL gl)//expresion
     {
@@ -65,7 +69,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
-        gl.glScalef(2f, 2f, 2f);
+//        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg(gl, glu);
@@ -103,7 +107,7 @@ public class DrawMonst
             draw_monst(gl);
         } else
         {
-            gl.glScalef(2f, 2f, 2f);
+//            gl.glScalef(2f, 2f, 2f);
             gl.glRotatef(90, 20f, 15f, 15f);
             gl.glTranslatef(0f, 1f, 0f);
             draw_right_leg(gl, glu);
@@ -132,7 +136,7 @@ public class DrawMonst
             draw_monst(gl);
         } else
         {
-            gl.glScalef(2f, 2f, 2f);
+//            gl.glScalef(2f, 2f, 2f);
             gl.glRotatef(90, 20f, 15f, 15f);
             gl.glTranslatef(0f, 0f, 2f);//boo
             draw_right_leg(gl, glu);
@@ -156,7 +160,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
-        gl.glScalef(2f, 2f, 2f);
+//        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg1(gl, glu);
@@ -192,7 +196,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
-        gl.glScalef(2f, 2f, 2f);
+//        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg(gl, glu);
@@ -228,7 +232,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
-        gl.glScalef(2f, 2f, 2f);
+//        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg(gl, glu);
@@ -264,7 +268,7 @@ public class DrawMonst
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         gl.glRotatef(90, 20f, 15f, 15f);
-        gl.glScalef(2f, 2f, 2f);
+//        gl.glScalef(2f, 2f, 2f);
         if (mvt % 20 + 10 > 20)
         {
             draw_right_leg(gl, glu);
@@ -291,7 +295,56 @@ public class DrawMonst
         mvt++;
 
     }
+    public void rebota(GL gl){
+        GLU glu = new GLU();
+        q = glu.gluNewQuadric();
+//        gl.glScalef(2f, 2f, 2f);
 
+          if (mvt % 50 + 10 > 20)
+        {
+            gl.glTranslatef(movaux, 1, 1f);
+            pelota(gl,glu);
+            if(movaux<=3)
+            movaux+=1;
+
+        } else
+        {
+            gl.glTranslatef(movaux, -1, 1f);
+            pelota(gl,glu);
+            if(movaux>=-4)
+            movaux-=1;
+        }
+        mvt++;
+        
+        
+          
+//        if (moviendoa)
+//        {
+//
+//            mov-=0.5;
+//            gl.glTranslatef(0, mov, 1f);
+//            pelota(gl,glu);
+//            movaux+=0.2;
+//
+//            if(movaux>-4){
+////            move_ball(gl);
+//            moviendoa=false;
+//            }
+//        } 
+//        else
+//        {
+//            mov+=0.5;
+//            gl.glTranslatef(0, mov, 1f);
+//            pelota(gl,glu);
+//            movaux-=0.2;
+//            if(mov<=1){
+//            moviendoa=true;
+//            }
+//            
+//        }
+        
+    }
+    
     public void draw_body(GL gl, GLU glu)
     {
 
@@ -739,19 +792,7 @@ public class DrawMonst
         }
     }
 
-//    public void set_red_material (GL gl){
-//        
-//        float[] mat_ambient ={ 0.8f,0.05f,0.15f,0.2f };
-//        float[] mat_diffuse ={ 0.4f,0.4f,0.4f,1.0f};
-//        float[] mat_specular ={0.7f,0.6f,0.6f,1.0f };
-////        float shine =15.0f ;
-//        
-//        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_AMBIENT,mat_ambient, 0);
-//        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_DIFFUSE,mat_diffuse,0);
-//        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_SPECULAR,mat_specular,0);
-////        gl.glMaterialf(GL.GL_FRONT_AND_BACK,GL.GL_SHININESS,shine);
-//        
-//    }
+
     public void set_pink_material(GL gl)
     {
         float[] mat_ambient =
@@ -822,19 +863,7 @@ public class DrawMonst
 
     }
 
-//    public void set_grey_material (GL gl){
-//        
-//        float mat_ambient[]={0.07f,0.07f,0.07f,0.0f};
-//        float mat_diffuse[]={1.0f,1.0f,1.0f,1.0f};
-//        float mat_specular[]={0.8f,0.8f,0.8f,1.0f};
-//        float shine=125.2f;    
-//                
-//        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_AMBIENT,mat_ambient, 0);
-//        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_DIFFUSE,mat_diffuse,0);
-//        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_SPECULAR,mat_specular,0);
-//        gl.glMaterialf(GL.GL_FRONT_AND_BACK,GL.GL_SHININESS,shine);
-//        
-//    }
+
     public void set_armleg_material(GL gl)
     {
 
@@ -857,6 +886,21 @@ public class DrawMonst
         gl.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_SPECULAR, mat_specular, 0);
         gl.glMaterialf(GL.GL_FRONT_AND_BACK, GL.GL_SHININESS, shine);
 
+    }
+    
+    
+    public void set_blue_material (GL gl) {
+   
+        float mat_ambient[]={0.2f,0.2f,0.6f,1.0f};
+        float mat_diffuse[]={1.0f,1.0f,1.0f,1.0f};
+        float mat_specular[]={0.8f,0.8f,0.8f,1.0f};
+        float shine=125.2f;    
+                
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_AMBIENT,mat_ambient, 0);
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_DIFFUSE,mat_diffuse,0);
+        gl.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_SPECULAR,mat_specular,0);
+        gl.glMaterialf(GL.GL_FRONT_AND_BACK,GL.GL_SHININESS,shine);
+        
     }
 
     public void box_eye(GL gl)
@@ -951,5 +995,23 @@ public class DrawMonst
         gl.glEnd();
 
     }
+    public void pelota(GL gl, GLU glu){
+        gl.glPushMatrix();
+        set_blue_material(gl);
+//        gl.glTranslatef(0, 0, 1f);
+        glu.gluSphere(q, 0.2f, SLICES, STACKS);
+        gl.glPopMatrix();
+    }
+    
+//    public void move_ball(GL gl){
+//        if(mov<=4f&& moviendoa) {
+//            mov+=.11f;
+//        }
+//        if(mov>=4f&&moviendob) {
+//            mov-=.11f;
+//            
+//        }
+//        
+//    }
 
 }

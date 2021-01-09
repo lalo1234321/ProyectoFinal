@@ -5,13 +5,22 @@
  */
 package menu;
 import com.sun.opengl.util.Animator;
+import com.sun.opengl.util.texture.Texture;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import javax.media.opengl.GLCanvas;
+import javax.media.opengl.GLEventListener;
 import javax.swing.JFrame;
 import levels.targetShottingLevel.CanvasCatShottingLevel;
 import levels.targetShottingLevel.CanvasMonsterShottingLevel;
+import levels.thinkAndChoose.CatTACHlevel;
+import levels.thinkAndChoose.ChickenTACHlevel;
+import levels.thinkAndChoose.PinkyTACHLevel;
+import levels.thinkAndChoose.Kitten;
+import levels.thinkAndChoose.Pinky;
+import levels.thinkAndChoose.Pio;
 /**
  *
  * @author theowl
@@ -19,13 +28,16 @@ import levels.targetShottingLevel.CanvasMonsterShottingLevel;
 public class MenuLevel extends javax.swing.JFrame {
     public static Animator animator;
     private int character;
+ 
     /**
      * Creates new form MenuLevel
      */
     public MenuLevel(int op) {
         this.character = op;
         initComponents();
+        
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,6 +73,11 @@ public class MenuLevel extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 260, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/thinkAndChoose.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 260, 40));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/onePlusTwo.png"))); // NOI18N
@@ -107,10 +124,38 @@ public class MenuLevel extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        
+        if(character==1){
+            Kitten k=new Kitten();
+            k.setVisible(true);
+            
+        }else{
+            if(character==2){
+            Pinky p= new Pinky();
+            p.setVisible(true);
+            }else{
+                if(character==3){
+                Pio pio=new Pio();
+                pio.setVisible(true);
+                }
+             }
+        }
+        
+//        frame.add(canvas);
+//        frame.setSize(1000, 800);
+//        final Animator animator = new Animator(canvas); 
+//        frame.setLocationRelativeTo(null);
+//        frame.setVisible(true);
+//        animator.start();
+    }//GEN-LAST:event_jLabel3MouseClicked
+ 
+    
     /**
      * @param args the command line arguments
      */
-    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
