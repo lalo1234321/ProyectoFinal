@@ -9,6 +9,7 @@ import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
 import java.lang.Math;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 public class Robot {
@@ -73,9 +74,19 @@ public class Robot {
     public boolean movingForward2, movingBack2 = false, destroyed2 = false;
     private float k = 0;
     private JFrame frame;
+     private String [] tips = new String[] {
+    "Whenever possible, do a problem multiple ways.",
+    "Move around each section nimbly, skipping questions that stump you to put fresh eyes on them later.",
+    "Have a plan for the Multiple Choice section that recognizes the purpose of wrong answer choices. ",
+    "Have a plan for the Free Response section that maximizes point allocation.",
+    "Value diagrams and graphs, whether they are provided or you have to draw them yourself.",
+    "Don’t neglect your calculator."
+    };
+    private Random generator;
     public Robot(){}
     public Robot(JFrame frame) {
         this.frame = frame;
+        generator = new Random();
     }
     
     public void drawRobot(GL gl, boolean jump,boolean translate, boolean ears, boolean body, boolean attack, boolean left, boolean right, boolean targetGame, boolean fire) {
@@ -137,7 +148,7 @@ public class Robot {
             }
             if(destroyed&&destroyed1&&destroyed2)
                 {
-                    JOptionPane.showMessageDialog(null, "You have won");
+                    JOptionPane.showMessageDialog(null, "You have won\n"+getRandomTip());
                     frame.setVisible(false);
                     Menu1 menu = new Menu1();
                     menu.setVisible(true);
@@ -851,5 +862,12 @@ public class Robot {
         gl.glEnd();
         gl.glFlush();
         gl.glDisable(GL.GL_TEXTURE_2D);
+    }
+    
+    public String getRandomTip() {
+        String tip;
+        int randomIndex = generator.nextInt(tips.length);
+        tip = tips[randomIndex];
+        return tip;
     }
 }
