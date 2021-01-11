@@ -38,7 +38,9 @@ public class CatTACHlevel implements GLEventListener,MouseListener, MouseMotionL
     private int oldMouseY;
     boolean[] keys=new boolean[256]; //to know which key is pressed
     private GLUquadric q=null;
-    
+    DrawMonst monstr;
+    int opc=0;
+    boolean accion=false;
     //position of stan in the window
     private static final float X_POSITION=0f;
     private static final float Y_POSITION=-0.08f;
@@ -65,6 +67,7 @@ public class CatTACHlevel implements GLEventListener,MouseListener, MouseMotionL
         GL gl = drawable.getGL();
         System.err.println("INIT GL IS: " + gl.getClass().getName());
         gl.setSwapInterval(1);
+        monstr = new DrawMonst();
          //set up lighting
         float light_ambient[]={0.9f, 0.9f, 0.9f, .10f};
         float light_diffuse[]={0.3f, 0.3f, 0.3f, .10f};
@@ -90,7 +93,7 @@ public class CatTACHlevel implements GLEventListener,MouseListener, MouseMotionL
         
        GL gl = drawable.getGL();
         GLU glu = new GLU();
-        DrawMonst monstr = new DrawMonst();
+        
         // Clear the drawing area
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glMatrixMode(GL.GL_MODELVIEW);
@@ -107,11 +110,36 @@ public class CatTACHlevel implements GLEventListener,MouseListener, MouseMotionL
         gl.glRotatef(view_rotx,1.0f,0.0f,0.0f);
         gl.glRotatef(view_roty,0.0f,1.0f,0.0f);
         gl.glRotatef(90,0.0f,0.0f,1.0f);
-        gl.glPushMatrix();
         Robot robot = new Robot();
-        robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H'],false, false, false, false);
-        gl.glPopMatrix();
-        monstr.rebota(gl);
+        if (opc!=15&&opc!=16) {
+             gl.glPushMatrix();
+             robot.drawRobot(gl, keys['J'],keys['T'], keys['E'], keys['L'], keys['H'],false, false, false, false);
+            gl.glPopMatrix();
+        }
+           
+        if(opc==15){
+            gl.glTranslated(0f,0f,1f);
+            gl.glPushMatrix();
+            robot.drawRobot(gl, false,keys['T'], false, false, false,false, false, false, false);
+            gl.glPopMatrix();
+            accion=true;
+            if(monstr.rebota(gl, accion)==true){
+                gl.glTranslated(0f,0f,5f);
+                monstr.pelota(gl, glu);
+                JOptionPane.showMessageDialog(null, "Felicidades! Has atrapado la pelota");
+            }
+        }
+        if(opc==16){
+            gl.glTranslated(0f,0f,-1f);
+            gl.glPushMatrix();
+            robot.drawRobot(gl, false,keys['T'], false, false, false,false, false, false, false);
+            gl.glPopMatrix();
+            accion=false;
+        }
+                
+        if (opc!=15){
+          monstr.rebota(gl,accion);  
+        }
         //System.out.println("Ejecución?");
         gl.glFlush();
     }
@@ -194,6 +222,8 @@ public class CatTACHlevel implements GLEventListener,MouseListener, MouseMotionL
             keys['C']=false;
             keys['V']=false;
             keys['P']=false;
+            keys['7']=false;
+            keys['8']=false;
             keys[ke.getKeyCode()]=true;   
             System.out.println("Key pressed "+ke.getKeyChar());
             switch(ke.getKeyCode()) {
@@ -202,7 +232,13 @@ public class CatTACHlevel implements GLEventListener,MouseListener, MouseMotionL
                     JOptionPane.showMessageDialog(null, instructions);
                     
                 }
-                    break;    
+                    break; 
+                 case '7':
+                     opc=15;
+                     break;
+                 case '8':
+                     opc=16;
+                 break;
             
             }
         }

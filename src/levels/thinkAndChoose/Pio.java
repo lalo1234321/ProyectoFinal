@@ -18,7 +18,7 @@ import static menu.MenuLevel.animator;
  * @author TANIA
  */
 public class Pio extends javax.swing.JFrame {
-    int preg=0,puntos=0,opc;
+    int preg=0,puntos=0,opc,pt;
     String[] preguntas={"<html><body>Derivada implicita de <br> x^2 + y^2 = 4<html><body>",
                         "Derivada de sen(u)",
                         "Derivada de u^n",
@@ -28,7 +28,8 @@ public class Pio extends javax.swing.JFrame {
     /**
      * Creates new form Pio
      */
-    public Pio() {
+    public Pio(int pt) {
+        this.pt=pt;
         initComponents();
         animator= new Animator(gLCanvas1);
         animator.start();
@@ -343,7 +344,7 @@ public class Pio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pio().setVisible(true);
+                new Pio(0).setVisible(true);
             }
         });
     }

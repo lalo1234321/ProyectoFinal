@@ -36,9 +36,10 @@ import personajes.DrawMonst;
  * @author TANIA
  */
 public class PinkyTACHLevel implements GLEventListener, MouseListener, MouseMotionListener,KeyListener{
+    private DrawMonst monstr;
     private int mousex,mousey,opc,cont=0,aux1=-2;
     float movizqder=0;
-    boolean stop=false,accion=false;
+    boolean accion=false;
     public static javax.swing.JLabel inst;
 //    AudioStream audio;
     static InputStream sound;
@@ -56,6 +57,9 @@ public class PinkyTACHLevel implements GLEventListener, MouseListener, MouseMoti
         GL gl = drawable.getGL();
         System.err.println("INIT GL IS: " + gl.getClass().getName());
         
+        monstr = new DrawMonst();
+        
+
         gl.setSwapInterval(1);
         float light_ambient[]={0.9f, 0.9f, 0.9f, 1.0f};
         float light_diffuse[]={0.3f, 0.3f, 0.3f, 1.0f};
@@ -97,7 +101,7 @@ public class PinkyTACHLevel implements GLEventListener, MouseListener, MouseMoti
         gl.glRotatef(rotx,1.0f, 0.0f, 0.0f);
         gl.glRotatef(roty,0.0f, 1.0f, 0.0f);
         gl.glRotatef(110,0.0f, 0.2f, 1.0f);
-        DrawMonst monstr = new DrawMonst();
+        // DrawMonst monstr = new DrawMonst();
         
 //        if(cont>=1){
 //        cont++;
@@ -126,28 +130,35 @@ public class PinkyTACHLevel implements GLEventListener, MouseListener, MouseMoti
         switch(opc){
             case 0:
                 
-                monstr.draw_monst(gl);
+                monstr.draw_monst1(gl);
                 
                 break;
             case 1:
+                
                 monstr.saludar(gl);
             break;
             case 2:
+                
                 monstr.brincar(gl);
             break;
             case 3:
+                
                 monstr.caminar(gl);
             break;
             case 4:
+                
                 monstr.boo(gl);
             break;
             case 5:
+                
                 monstr.aplaude(gl);
             break;
             case 6:
+                
                 monstr.guinar(gl);
             break;
             case 7:
+                
                 monstr.triste(gl);
             break;
             case 8:
@@ -269,9 +280,28 @@ public class PinkyTACHLevel implements GLEventListener, MouseListener, MouseMoti
 //
 //                }
 //                break;
+            case 15: 
+                
+                gl.glTranslated(1f,0f,0f);
+                monstr.caminar(gl);
+                accion=true;
+                if(monstr.rebota(gl, accion)==true){
+                    monstr.pelota(gl, glu);
+                   JOptionPane.showMessageDialog(null, "Felicidades! Has atrapado la pelota");
+                }
+                break;
+            case 16: 
+                gl.glTranslated(-1f,0f,0f);
+                monstr.caminar(gl);
+                accion=false;
+                break;
         }
-        monstr.rebota(gl);
-//        monstr.pelota(gl,glu);
+        if (opc!=15){
+          monstr.rebota(gl,accion);  
+        }
+        
+        
+        
         
     }
 
@@ -365,6 +395,8 @@ public class PinkyTACHLevel implements GLEventListener, MouseListener, MouseMoti
             keys['3']= false;
             keys['4']= false;
             keys['5']= false;
+            keys['7']= false;
+            keys['8']= false;
             keys[e.getKeyCode()]=true;
             try{
             }catch(NullPointerException ex){
@@ -404,8 +436,14 @@ public class PinkyTACHLevel implements GLEventListener, MouseListener, MouseMoti
                         break;
                 case '5':opc=14;
                         break; 
-                default: opc=0;
+                case '7':opc=15;
                         break;
+                case '8':opc=16;
+                        break; 
+                default: 
+                        opc=0;
+                        break;
+                    
             
         }
         

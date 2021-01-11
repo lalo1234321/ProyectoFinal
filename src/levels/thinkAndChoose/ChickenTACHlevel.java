@@ -33,13 +33,14 @@ public class ChickenTACHlevel implements GLEventListener, MouseListener, MouseMo
     Frame frame;
     int[] ban;
     int con;
-    
+    boolean accion=false;
     int k, x;
-
+    int opc=0;
     private float view_rotx = 0.01f;
     private float view_roty = 0.01f;
     private int oldMouseX;
     private int oldMouseY;
+    DrawMonst monstr;
 
     //position of stan in the window
     private static final float X_POSITION = 0f;
@@ -51,7 +52,7 @@ public class ChickenTACHlevel implements GLEventListener, MouseListener, MouseMo
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
         ban = new int[14];
-        
+        monstr = new DrawMonst();
         resetBan();
         System.err.println("INIT GL IS: " + gl.getClass().getName());
         drawable.addMouseListener(this);
@@ -99,7 +100,6 @@ public class ChickenTACHlevel implements GLEventListener, MouseListener, MouseMo
         GL gl = drawable.getGL();
         GLU glu = new GLU();
         DrawPollo pollo = new DrawPollo(gl, glu, ban, con);
-        DrawMonst monstr = new DrawMonst();
 
         // Clear the drawing area
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -119,12 +119,42 @@ public class ChickenTACHlevel implements GLEventListener, MouseListener, MouseMo
         gl.glRotatef(view_roty, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(90, 0.0f, 0.0f, 1.0f);
 
-        iniciarCon();
-        gl.glTranslatef(0, -0.5f, 0);
-        gl.glPushMatrix();
-        pollo.DrawBird();
-        gl.glPopMatrix();
-        monstr.rebota(gl);
+//        iniciarCon();
+//        gl.glTranslatef(0, -0.5f, 0);
+//        gl.glPushMatrix();
+//        pollo.DrawBird();
+//        gl.glPopMatrix();
+        if (opc!=15&&opc!=16) {
+            iniciarCon();
+            gl.glTranslatef(0, -0.5f, 0);
+            gl.glPushMatrix();
+            pollo.DrawBird();
+            gl.glPopMatrix();
+        }
+           
+        if(opc==15){
+            gl.glTranslatef(0f, -0.5f, 0.5f);
+            gl.glPushMatrix();
+            pollo.DrawBird();
+            gl.glPopMatrix();
+            accion=true;
+            if(monstr.rebota(gl, accion)==true){
+                gl.glTranslatef(0f, -0.5f, 0.5f);
+                monstr.pelota(gl, glu);
+                JOptionPane.showMessageDialog(null, "Felicidades! Has atrapado la pelota");
+            }
+        }
+        if(opc==16){
+            gl.glTranslatef(0f, -.5f, -0.5f);
+            gl.glPushMatrix();
+            pollo.DrawBird();
+            gl.glPopMatrix();
+            accion=false;
+        }
+                
+        if (opc!=15){
+          monstr.rebota(gl,accion);  
+        }
         // Flush all drawing operations to the graphics card
         gl.glFlush();
     }
@@ -279,7 +309,10 @@ public class ChickenTACHlevel implements GLEventListener, MouseListener, MouseMo
             case 53://5 teatro
                 ban[8] = 5;
                 break;
-
+            case '7':opc=15;
+                    break;
+            case '8':opc=16;
+                    break; 
             default:
                 try
                 {

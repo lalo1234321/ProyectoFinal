@@ -256,7 +256,8 @@ public class Menu1 extends javax.swing.JFrame  {
     }//GEN-LAST:event_jLabel6MouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        JOptionPane.showMessageDialog(null, "Cat intructions: click the character and press P\n"
+        JOptionPane.showMessageDialog(null, "Cat intructions: click the character and press P \n"
+                + "In Target Level press W to shoot laser, press A or D to move the character \n"
                 + "Pinky instructions: click the character and press  I\n"
                 + "Chicken instrucions: click the character and press H");
     }//GEN-LAST:event_jLabel3MouseClicked

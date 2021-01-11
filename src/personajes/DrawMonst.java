@@ -4,7 +4,8 @@ import com.sun.opengl.util.texture.Texture;
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
-
+import javax.swing.JOptionPane;
+import menu.MenuLevel;
 /**
  *
  * @author TANIA
@@ -16,10 +17,9 @@ public class DrawMonst
     private static final int SLICES = 40;
     private static final int STACKS = 40;
     private GLUquadric q = null;
-    private static int mvt = 0, movaux=0;
+    private static int mvt = 0, movaux=0,cont=0;
     private float mov=0f;
-    private boolean moviendoa=true, moviendob=true;
-
+    
     //heigth and widht of each components
     private static final float HEIGHT_BODY = 1.0f;
     private static final float TOP_BODY = 0.6f;
@@ -32,6 +32,13 @@ public class DrawMonst
     private static final float WIDTH_EYES = 0.065f;
     private static final float WIDTH_HANDS = 0.1f;
     private static final float WIDTH_OPEN_MOUTH = 0.065f;
+
+
+    //Lalo adds rebote method in line 307
+
+    private float moveBall=0;
+    public boolean lanzamiento,caida=false,message=false;
+    public String bonus="Felicidades: has recibido un bonus de: 3 puntos";
 
     //position of each component int the window
     public DrawMonst()
@@ -52,6 +59,31 @@ public class DrawMonst
 //        gl.glScalef(2f, 2f, 2f);
 
         gl.glTranslated(0, 0, 3);
+        //gl.glScalef(2f, 2f, 2f);
+
+        draw_right_leg(gl, glu);
+        draw_left_leg(gl, glu);
+        draw_arm_left(gl, glu);
+        draw_arm_right(gl, glu);
+        draw_head(gl, glu);
+        eyes(gl, glu);
+        draw_mouth(gl, glu);
+        draw_body(gl, glu);
+
+    }
+    public void draw_monst1(GL gl)
+    {
+
+        GLU glu = new GLU();
+        q = glu.gluNewQuadric();
+        glu.gluQuadricDrawStyle(q, GLU.GLU_FILL);
+        glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
+        glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
+        gl.glRotatef(90, 20f, 15f, 15f);
+
+//        gl.glScalef(2f, 2f, 2f);
+
+
         //gl.glScalef(2f, 2f, 2f);
 
         draw_right_leg(gl, glu);
@@ -109,7 +141,7 @@ public class DrawMonst
         
         if (mvt % 20 + 10 > 20)
         {
-            draw_monst(gl);
+            draw_monst1(gl);
         } else
         {
 //            gl.glScalef(2f, 2f, 2f);
@@ -138,7 +170,7 @@ public class DrawMonst
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
         if (mvt % 20 + 10 > 20)
         {
-            draw_monst(gl);
+            draw_monst1(gl);
         } else
         {
 //            gl.glScalef(2f, 2f, 2f);
@@ -300,54 +332,35 @@ public class DrawMonst
         mvt++;
 
     }
-    public void rebota(GL gl){
+    public boolean rebota(GL gl, boolean stop){
+        message=false;
         GLU glu = new GLU();
         q = glu.gluNewQuadric();
-//        gl.glScalef(2f, 2f, 2f);
+        // (moveBall<=3.0f&&this.caida)?moveBall+=.12f:"algo";
+        if(moveBall<=3.0f&&!this.caida) 
+            moveBall+=.12f;
+            
+        if(moveBall>=-1.0f&&this.caida) 
+            moveBall-=.12f;
+        
+        if(moveBall>=2.9)
+            this.caida=true;
 
-          if (mvt % 50 + 10 > 20)
-        {
-            gl.glTranslatef(movaux, 1, 1f);
-            pelota(gl,glu);
-            if(movaux<=3)
-            movaux+=1;
-
-        } else
-        {
-            gl.glTranslatef(movaux, -1, 1f);
-            pelota(gl,glu);
-            if(movaux>=-4)
-            movaux-=1;
+        if(moveBall<=-.96f)
+            this.caida=false;
+        if(!stop){
+          gl.glTranslatef(0f,moveBall,1.2f);
+          pelota(gl,glu);   
         }
-        mvt++;
         
         
-          
-//        if (moviendoa)
-//        {
-//
-//            mov-=0.5;
-//            gl.glTranslatef(0, mov, 1f);
-//            pelota(gl,glu);
-//            movaux+=0.2;
-//
-//            if(movaux>-4){
-////            move_ball(gl);
-//            moviendoa=false;
-//            }
-//        } 
-//        else
-//        {
-//            mov+=0.5;
-//            gl.glTranslatef(0, mov, 1f);
-//            pelota(gl,glu);
-//            movaux-=0.2;
-//            if(mov<=1){
-//            moviendoa=true;
-//            }
-//            
-//        }
+        if(stop&&moveBall>=-0.3&&moveBall<=0&&!message&&cont==0){  
+          stop=false;
+          message=true;
+          cont=1;
+        }
         
+        return message; 
     }
     
     public void draw_body(GL gl, GLU glu)

@@ -30,7 +30,7 @@ import menu.MenuLevel;
 public class Pinky extends javax.swing.JFrame{
 
     Animator animator;
-    int preg=0,puntos=0,opc;
+    int preg=0,puntos=0,opc,pt=0;
 //    boolean ban=false;
     File f= new File("src/backGround/TACHlevel/cielom.jpg");
     String[] preguntas={"<html><body>Derivada implicita de <br> x^2 + y^2 = 4<html><body>",
@@ -44,8 +44,8 @@ public class Pinky extends javax.swing.JFrame{
      * Creates new form Pinky
      */
 //    FondoPanel fondo = new FondoPanel();
-    public Pinky() {
-        
+    public Pinky(int pt) {
+        this.pt=pt;
 //        this.setContentPane(fondo);
         initComponents();
         animator= new Animator(gLCanvas1);
@@ -372,7 +372,7 @@ public class Pinky extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pinky().setVisible(true);
+                new Pinky(0).setVisible(true);
             }
         });
     }

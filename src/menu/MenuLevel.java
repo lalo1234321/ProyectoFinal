@@ -13,6 +13,7 @@ import java.io.File;
 import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLEventListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import levels.targetShottingLevel.CanvasCatShottingLevel;
 import levels.targetShottingLevel.CanvasMonsterShottingLevel;
 
@@ -132,19 +133,24 @@ public class MenuLevel extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        
         if(character==1){
-            Kitten k=new Kitten();
+            JOptionPane.showMessageDialog(null, "Press NEXT to start and aswer the questions"
+                    + "\nPress 7 to catch the ball y 8 to step back");
+            Kitten k=new Kitten(0);
             k.setVisible(true);
             
         }else{
             if(character==2){
-            Pinky p= new Pinky();
-            p.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Press NEXT to start and aswer the questions"
+                    + "\nPress 7 to catch the ball y 8 to step back");
+                Pinky p= new Pinky(0);
+                p.setVisible(true);
             }else{
                 if(character==3){
-                Pio pio=new Pio();
-                pio.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Press NEXT to start and aswer the questions"
+                    + "\nPress 7 to catch the ball y 8 to step back");
+                    Pio pio=new Pio(0);
+                    pio.setVisible(true);
                 }
              }
         }
