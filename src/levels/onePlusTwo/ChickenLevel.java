@@ -68,7 +68,7 @@ public class ChickenLevel extends OnePlusTwo implements GLEventListener, KeyList
         super(personaje);
 
         boolean bool = true;
-        arr = new int[11];
+        arr = new int[6];
         Qres = 0;
         do
         {
@@ -598,7 +598,7 @@ public class ChickenLevel extends OnePlusTwo implements GLEventListener, KeyList
     public void formatoLabel()
     {
         String s = "";
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < arr.length-1; i++)
         {
             if (arr[i] > 0)
             {
@@ -614,7 +614,7 @@ public class ChickenLevel extends OnePlusTwo implements GLEventListener, KeyList
                 s = s + arr[i];
             }
         }
-        s = s + "=" + arr[10];
+        //s = s + "=" + arr[1];
         labN.setText(s);
     }
 

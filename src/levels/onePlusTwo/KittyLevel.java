@@ -75,7 +75,7 @@ public class KittyLevel extends OnePlusTwo implements GLEventListener, MouseList
     {
         super(personaje);
         boolean bool = true;
-        arr = new int[11];
+        arr = new int[6];
         Qres = 0;
         do
         {
@@ -392,7 +392,7 @@ public class KittyLevel extends OnePlusTwo implements GLEventListener, MouseList
     public void formatoLabel()
     {
         String s = "";
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < arr.length - 1; i++)
         {
             if (arr[i] > 0)
             {
@@ -408,7 +408,7 @@ public class KittyLevel extends OnePlusTwo implements GLEventListener, MouseList
                 s = s + arr[i];
             }
         }
-        s = s + "=" + arr[10];
+        //s = s + "=" + arr[10];
         labN.setText(s);
     }
 
