@@ -7,46 +7,56 @@ package menu;
 
 import javax.swing.JFrame;
 import com.sun.opengl.util.Animator;
-import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.media.opengl.GL;
-import javax.media.opengl.GLCanvas;
-import javax.media.opengl.GLAutoDrawable;
-import javax.media.opengl.GLCapabilities;
-import javax.media.opengl.GLEventListener;
-import javax.media.opengl.glu.GLU;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import menu.MenuCanvasCat;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 /**
  *
  * @author theowl
  */
-public class Menu1 extends javax.swing.JFrame  {
-     JFrame frame;
-     private Animator animator1;
-     private Animator animator2;
-     private Animator animator3;
+public class Menu1 extends javax.swing.JFrame
+{
+
+    JFrame frame;
+    private Animator animator1;
+    private Animator animator2;
+    private Animator animator3;
+
+    static AudioStream audio;
+    static InputStream sounds;
+    static Clip clip;
+
     /**
      * Creates new form Menu1
      */
-    public Menu1() {
-        
-        
+    public Menu1()
+    {
         initComponents();
+        reproducir("");
         gLCanvas1.addGLEventListener(new MenuCanvasKitty());
         animator1 = new Animator(gLCanvas1);
-        addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter()
+        {
 
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent e)
+            {
                 // Run this on another thread than the AWT event queue to
                 // make sure the call to Animator.stop() completes before
                 // exiting
-                new Thread(new Runnable() {
+                new Thread(new Runnable()
+                {
 
-                    public void run() {
+                    public void run()
+                    {
                         animator1.stop();
                         System.exit(0);
                     }
@@ -54,19 +64,23 @@ public class Menu1 extends javax.swing.JFrame  {
             }
         });
         animator1.start();
-        
+
         gLCanvas2.addGLEventListener(new CanvasPinky());
         animator2 = new Animator(gLCanvas2);
-        addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter()
+        {
 
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent e)
+            {
                 // Run this on another thread than the AWT event queue to
                 // make sure the call to Animator.stop() completes before
                 // exiting
-                new Thread(new Runnable() {
+                new Thread(new Runnable()
+                {
 
-                    public void run() {
+                    public void run()
+                    {
                         animator2.stop();
                         System.exit(0);
                     }
@@ -74,19 +88,23 @@ public class Menu1 extends javax.swing.JFrame  {
             }
         });
         animator2.start();
-        
+
         gLCanvas3.addGLEventListener(new CanvasChicken());
         animator3 = new Animator(gLCanvas3);
-        addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter()
+        {
 
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent e)
+            {
                 // Run this on another thread than the AWT event queue to
                 // make sure the call to Animator.stop() completes before
                 // exiting
-                new Thread(new Runnable() {
+                new Thread(new Runnable()
+                {
 
-                    public void run() {
+                    public void run()
+                    {
                         animator3.stop();
                         System.exit(0);
                     }
@@ -94,7 +112,14 @@ public class Menu1 extends javax.swing.JFrame  {
             }
         });
         animator3.start();
-        
+
+        try
+        {
+            reproducir("src/menu/sonido1");
+        } catch (Exception e)
+        {
+        }
+
         //initCanvas();
     }
 
@@ -268,26 +293,54 @@ public class Menu1 extends javax.swing.JFrame  {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        MenuLevel menuLevel = new MenuLevel(1);
-        menuLevel.setVisible(true);
+        new MenuLevel(1).setVisible(true);
+        clip.close();
         this.dispose();
 
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        MenuLevel menuLevel = new MenuLevel(2);
-        menuLevel.setVisible(true);
+        new MenuLevel(2).setVisible(true);
+        clip.close();
         this.dispose();
 
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        MenuLevel menuLevel = new MenuLevel(3);
-        menuLevel.setVisible(true);
+        new MenuLevel(3).setVisible(true);
+        clip.close();
         this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
-    
-    public final void initCanvas() {
+
+    public static void sonido(File sonido)
+    {
+        try
+        {
+            sounds = new FileInputStream(sonido);
+            audio = new AudioStream(sounds);
+            AudioPlayer.player.start(audio);
+        } catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
+        }
+    }
+
+    public static void reproducir(String efecto)
+    {
+        try
+        {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(new File(efecto)));
+            clip.start();
+            clip.loop(1000);
+        } catch (Exception e)
+        {
+            //JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    public final void initCanvas()
+    {
         /*MenuCanvasCat cat = new MenuCanvasCat();
         GLCanvas canvas = new GLCanvas(new GLCapabilities());
         canvas.addGLEventListener(cat);
@@ -295,7 +348,7 @@ public class Menu1 extends javax.swing.JFrame  {
         frame.getContentPane().add(canvas);
         frame.setVisible(true);
         System.out.println("Boton");*/
-       /* b1.setBackground(new java.awt.Color(255, 102, 102));
+ /* b1.setBackground(new java.awt.Color(255, 102, 102));
         b1.setText("Hola");
         b1.setBounds(0, 0, 300, 200);
         getContentPane().add(b1);
@@ -304,7 +357,7 @@ public class Menu1 extends javax.swing.JFrame  {
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.media.opengl.GLCanvas gLCanvas1;
     private javax.media.opengl.GLCanvas gLCanvas2;

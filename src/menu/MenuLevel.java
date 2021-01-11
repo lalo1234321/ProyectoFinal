@@ -51,7 +51,8 @@ public class MenuLevel extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -70,27 +71,40 @@ public class MenuLevel extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/targetShotting.png"))); // NOI18N
         jLabel2.setText("jLabel2");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jLabel2MouseClicked(evt);
             }
         });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 260, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/thinkAndChoose.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jLabel3MouseClicked(evt);
             }
         });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 260, 40));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/onePlusTwo.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel6MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 270, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/backMenu.png"))); // NOI18N
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jLabel5MouseClicked(evt);
             }
         });
@@ -162,6 +176,22 @@ public class MenuLevel extends javax.swing.JFrame {
 //        frame.setVisible(true);
 //        animator.start();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel6MouseClicked
+    {//GEN-HEADEREND:event_jLabel6MouseClicked
+        switch(character)
+        {
+            case 1:
+                new levels.onePlusTwo.KittyLevel(1).setVisible(true);
+                break;
+            case 2:
+                new levels.onePlusTwo.PinkyLevel(2).setVisible(true);
+                break;
+            case 3:
+                new levels.onePlusTwo.ChickenLevel(3).setVisible(true);
+        }
+        this.dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
  
     
     /**
